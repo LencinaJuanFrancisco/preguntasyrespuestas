@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row" style="width: 100%">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card text-center" style="padding: 20px">
+        <h3>Login</h3>
+        <br />
+        <form [formGroup]="login" (ngSubmit)="log()">
+          <div class="form-group" style="text-align: start">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Usuario"
+              formControlName="usuario"
+            />
+            <span class="text-danger ml-2"
+            *ngIf="this.login.get('usuario')?.invalid && this.login.get('usuario')?.touched">
+            El Nombre es <strong>requerido</strong>
+            </span>
+          </div>
+          <div class="form-group" style="text-align: start">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Contraseña"
+              formControlName="password"
+            />
+            <span class="text-danger ml-2"
+            *ngIf="this.login.get('password')?.invalid && this.login.get('password')?.touched">
+            El <strong>Password</strong> es requerido
+          </span>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary mr-2 btn-login" type="submit" [disabled]="login.invalid"  >
+              aceptar
+            </button>
+            <button class="btn btn-secondary" [routerLink]="['/inicio']">
+              volver
+            </button>
+          </div>
+          <div class="form-group">
+            <a
+              style="color: #f05f44; cursor: pointer"
+              [routerLink]="['/inicio/register']"
+              >Crear Cuenta</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
