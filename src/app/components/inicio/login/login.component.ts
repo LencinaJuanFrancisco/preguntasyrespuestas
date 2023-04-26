@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  login:FormGroup
+
+  loading=false;
+  login:FormGroup;
+
   constructor(private fb:FormBuilder,
               private toastr: ToastrService,
               private router:Router){
@@ -25,11 +28,19 @@ export class LoginComponent {
       nombreUsuario:this.login.value.usuario,
       password:this.login.value.password
     }
-    if (usuario.nombreUsuario === 'fran' && usuario.password === '123') {
-      this.router.navigate(['/dashboard'])
-    }else{
-      this.toastr.error('Usuario o contraseña incorrecto','Error')
-    }
+    this.loading= true
+    setTimeout(()=>{
+      if (usuario.nombreUsuario === 'fran' && usuario.password === '123') {
+
+        this.login.reset()
+        this.router.navigate(['/dashboard'])
+      }else{
+        this.toastr.error('Usuario o contraseña incorrecto','Error')
+        this.login.reset()
+      }
+      this.loading= false
+    },3000)
+
     console.log(usuario)
 
 

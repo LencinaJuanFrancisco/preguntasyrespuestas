@@ -15,7 +15,7 @@ export class RegisterComponent {
         password:["",[Validators.required,Validators.minLength(4) ]],
         confirmPassword:[""]
    },{
-    validators:this.checkPassword})
+    validator:this.checkPassword})
   }
   registarUsuario():void{
       console.log(this.register)
